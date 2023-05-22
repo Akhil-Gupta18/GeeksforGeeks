@@ -10,28 +10,23 @@ public:
     // m is maximum of number zeroes allowed to flip
     // n is size of array
     int findZeroes(int arr[], int n, int M) {
-        // code here
-         // code here
-         int maxConsecutiveOnes = 0;  
-    int zerosCount = 0;         
-    int left = 0;               
-
-    for (int right = 0; right < n; right++) {
-        if (arr[right] == 0) {
-            zerosCount++;
-        }
-
-        while (zerosCount > M) {
-            if (arr[left] == 0) {
-                zerosCount--;
+        int ma = 0;
+        int r = 0;
+        int l = 0;
+        int z = 0;
+        for(int r = 0;r<n;r++)
+        {
+            if(arr[r] == 0)
+            z++;
+            while(z>M)
+            {
+                if(arr[l] == 0)
+                z--;
+                l++;
             }
-            left++;
+            ma = max(ma,r-l+1);
         }
-
-        maxConsecutiveOnes = max(maxConsecutiveOnes, right - left + 1);
-    }
-
-    return maxConsecutiveOnes;
+        return ma;
     }  
 };
 
